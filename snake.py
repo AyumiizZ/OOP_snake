@@ -1,5 +1,5 @@
 import arcade
-from models import Snake
+# from models import Snake
 from models import World
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
@@ -25,6 +25,7 @@ class SnakeWindow(arcade.Window):
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.snake_sprite = ModelSprite('images/block.png',model=self.world.snake)
         self.snake_sprite.set_position(300,300)
+        self.wait_time = 0
     def update(self, delta):
         self.world.update(delta)
     def on_draw(self):
