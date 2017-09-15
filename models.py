@@ -1,12 +1,13 @@
-DIR_UP = 1
-DIR_RIGHT = 2
-DIR_DOWN = 3
-DIR_LEFT = 4
- 
+import arcade.key
+DIR_UP = 65362
+DIR_RIGHT = 65363
+DIR_DOWN = 65364
+DIR_LEFT = 65361
+DIR = 0
 DIR_OFFSET = { DIR_UP: (0,1),
                DIR_RIGHT: (1,0),
                DIR_DOWN: (0,-1),
-               DIR_LEFT:    (-1,0) }
+               DIR_LEFT:(-1,0) }
 
 class Snake:
     BLOCK_SIZE = 16
@@ -15,7 +16,10 @@ class Snake:
         self.x = x
         self.y = y
         self.wait_time = 0
-        self.direction = DIR_UP
+        self.direction = DIR_RIGHT
+    
+    def switch_direction(self, key):
+         self.direction = key
  
     def update(self, delta):
         self.wait_time += delta
@@ -41,7 +45,10 @@ class World:
         self.height = height
  
         self.snake = Snake(self, width // 2, height // 2)
- 
- 
+
     def update(self, delta):
         self.snake.update(delta)
+    def on_key_press(self, key, key_modifiers):
+        if key >= 65361 and key <= 65364:
+            self.snake.switch_direction(key)
+        
