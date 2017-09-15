@@ -21,10 +21,14 @@ class Snake:
         self.wait_time += delta
         if self.wait_time < Snake.MOVE_WAIT:
             return
-        if self.x > self.world.width or self.x < 0:
+        if self.x > self.world.width:
             self.x = 0
-        if self.y > self.world.height or self.y < 0:
+        if self.x < 0:
+            self.x = self.world.width
+        if self.y > self.world.height:
             self.y = 0
+        if self.y < 0:
+            self.y = self.world.width
         self.x += DIR_OFFSET[self.direction][0]*Snake.BLOCK_SIZE
         self.y += DIR_OFFSET[self.direction][1]*Snake.BLOCK_SIZE
         self.wait_time = 0
